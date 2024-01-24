@@ -16,19 +16,24 @@ private:
     int m_nRok=0;
 
 public:
+    //KONSTRUKTORZY
     Data(int d, int m, int r);
     Data();
 
-    void Ustaw(int d, int m, int r);
     int Dzien() const;
     int Miesiac() const;
     int Rok() const;
 
-    void Wypisz() const;
     void Wpisz();
+    void Ustaw(int d, int m, int r);
+    void Wypisz() const;
     void Koryguj();
-
     int Porownaj(const Data &wzor) const;
+
+//OPERATORY
+ friend ostream & operator<<(ostream & wy, const Data & d);
+ friend istream & operator>>(istream & we, Data & d);
+
 
 };
 

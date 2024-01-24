@@ -15,14 +15,7 @@ Pracownik::Pracownik(const Pracownik& wzor) : m_nIDZatrudnienia(++m_nLiczbaPraco
     m_DataUrodzenia.Ustaw(wzor.m_DataUrodzenia.Dzien(), wzor.m_DataUrodzenia.Miesiac(), wzor.m_DataUrodzenia.Rok());
 }
 
-Pracownik & Pracownik::operator=(const Pracownik& wzor){
-    if(this!=&wzor){
-        m_Imie.Ustaw(wzor.Imie());
-        m_Nazwisko.Ustaw(wzor.Nazwisko());
-        m_DataUrodzenia.Ustaw(wzor.m_DataUrodzenia.Dzien(), wzor.m_DataUrodzenia.Miesiac(), wzor.m_DataUrodzenia.Rok());
-    }
-    return *this;
-}
+
 const char* Pracownik::Imie ()const{return m_Imie.Zwroc();}
 const char* Pracownik::Nazwisko() const {return m_Nazwisko.Zwroc();}
 
@@ -64,4 +57,32 @@ int Pracownik::Porownaj(const Pracownik &wzorec) const {
     if (porownanieImie != 0)
         return porownanieImie;
     return porownanieData;
+}
+
+Pracownik & Pracownik::operator=(const Pracownik& wzor){
+    if(this!=&wzor){
+        m_Imie.Ustaw(wzor.Imie());
+        m_Nazwisko.Ustaw(wzor.Nazwisko());
+        m_DataUrodzenia.Ustaw(wzor.m_DataUrodzenia.Dzien(), wzor.m_DataUrodzenia.Miesiac(), wzor.m_DataUrodzenia.Rok());
+    }
+    return *this;
+}
+bool Pracownik::operator==(const Pracownik &wzor) const {
+    if(this->Porownaj(wzor)==0){
+        cout<<"Pracowniki sa jednakowe"<<endl;
+        return true;
+    }
+    cout<<"Pracowniki sa rozne"<<endl;
+    return false;
+
+}
+
+ostream & operator<<(ostream & wy, const Pracownik & p){
+    wy<<p.m_Imie<<p.m_Nazwisko<<p.m_DataUrodzenia<<endl;
+    return wy;
+}
+
+istream & operator>>(istream & we, Pracownik & p){
+    p.Wpisz();
+    return we;
 }

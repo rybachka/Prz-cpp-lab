@@ -16,23 +16,29 @@ private:
     int m_nLiczbaPracownikow;
 public:
     Pracownik *m_pNastepny;
-    Pracownik(const char* im="", const char * naz="", int dzien=1, int miesiac=1, int rok=2000);
-    Pracownik(const Pracownik & wzor);
-    int Porownaj(const Pracownik & wzorec) const;
+
+    //KONSTRUKTORZE
+    Pracownik(const char* im="", const char * naz="", int dzien=1, int miesiac=1, int rok=2000);//domysny
+    Pracownik(const Pracownik & wzor);//kopijacy
 
     const char * Imie() const;
     const char * Nazwisko() const;
 
+    void Wpisz();
+    void Wypisz() const;
     void Imie(const char * nowe_imie);
     void Nazwisko(const char * nowe_nazwisko);
     void DataUrodzenia(int nowy_dzien, int nowy_miesiac, int nowy_rok);
-    void Wypisz() const;
-    void Wpisz();
 
+    int Porownaj(const Pracownik & wzorec) const;
     int SprawdzImie(const char* por_imie) const;
     int SprawdzNazwisko(const char* por_nazwisko) const;
 
+    //OPERATORY
     Pracownik & operator=(const Pracownik & wzor);
+    bool operator==(const Pracownik & wzor) const;
+    friend ostream & operator<<(ostream & wy, const Pracownik & p);
+    friend istream & operator>>(istream & we, Pracownik & p);
 };
 
 

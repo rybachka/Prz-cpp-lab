@@ -15,16 +15,24 @@ private:
     char * m_pszNapis;
     int m_nD1;
 public:
-    Napis(const char* nap= "");
+    //KONSTRUKTORZE
+    Napis(const char* nap= "");//domysny
+    Napis(const Napis & wzor);//kopijacy
+
+    //DESTRUKTOR
     ~Napis();
-    Napis(const Napis & wzor);
+
     const char * Zwroc() const;
     void Ustaw(const char * nowy_napis);
     void Wypisz() const;
     void Wpisz();
     int SprawdzNapis(const char * por_napis) const;
 
+//OPERATORY
     Napis & operator=(const Napis & wzor);
+    bool operator==(const Napis & wzor) const;
+    friend ostream & operator<<(ostream & wy, const Napis & p);
+    friend istream & operator>>(istream & we, Napis & p);
 };
 
 

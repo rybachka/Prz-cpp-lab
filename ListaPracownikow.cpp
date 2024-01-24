@@ -87,3 +87,33 @@ void ListaPracownikow::Usun(const Pracownik &wzorzec) {
         cout<<"Pracownik usuniety"<<endl;
     }
 }
+
+void ListaPracownikow::ZapiszDoPliku(const char *nazwaPliku) {
+    ofstream wePlik(nazwaPliku);
+    if(!wePlik.is_open()){
+        cout<<"Program nie moze otworzyc pliku"<<endl;
+        return;
+    }
+
+    Pracownik * obecny = m_pPoczatek;
+    while(obecny!= nullptr){
+        wePlik<<(* obecny)<<endl;
+        obecny=obecny->m_pNastepny;
+    }
+    cout<<"Zapisano"<<endl;
+    wePlik.close();
+}
+
+void ListaPracownikow::WczytajZPliku(const char *nazwaPliku) {
+    ifstream wyPlik(nazwaPliku);
+    if (!wyPlik.is_open()){
+        cout<<"Program nie moze otworzyc pliku"<<endl;
+        return;
+    }
+    char line[1000];
+    while(wyPlik.getline(line, sizeof (line))){
+        cout<<line<<endl;
+    }
+    cout<<"Wczytano"<<endl;
+    wyPlik.close();
+}

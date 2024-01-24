@@ -2,6 +2,7 @@
 // Created by Mariia Rybak on 20.01.2024.
 //
 #include "Data.h"
+Data::Data() {}
 Data::Data(int d, int m, int r) {
     this->m_nDzien=d;
     this->m_nMiesiac=m;
@@ -18,7 +19,6 @@ void Data::Wpisz() {
     cin>>r;
     Ustaw(d,m,r);
 }
-void Data::Wypisz () const {cout<<Dzien()<<"-"<<Miesiac()<<"-"<<Rok()<<endl;}
 
 void Data::Ustaw(int d, int m, int r) {
     this->m_nDzien=d;
@@ -26,6 +26,9 @@ void Data::Ustaw(int d, int m, int r) {
     this->m_nRok=r;
     this->Koryguj();
 }
+
+void Data::Wypisz () const {cout<<Dzien()<<"-"<<Miesiac()<<"-"<<Rok()<<endl;}
+
 int Data::Dzien() const {return m_nDzien;}
 int Data::Miesiac() const {return m_nMiesiac;}
 int Data::Rok() const {return m_nRok;}
@@ -100,6 +103,22 @@ int Data::Porownaj(const Data& wzor) const {
         }
     }
 }
+ostream & operator<<(ostream & wy, const Data & d){
+    wy<<d.m_nDzien<<"-"<<d.m_nMiesiac<<"-"<<d.m_nRok<<endl;
+    return wy;
+}
 
-Data::Data() {}
+istream & operator>>(istream & we, Data & d){
+    int dn, m, r;
+    cout<<"Wpisz dzien: ";
+    we>>dn;
+    cout<<"Wpisz miesiac: ";
+    we>>m;
+    cout<<"Wpisz rok: ";
+    we>>r;
+    d.Ustaw(dn, m, r);
+    return we;
+}
+
+
 

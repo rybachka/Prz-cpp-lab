@@ -5,6 +5,7 @@
 #ifndef LAB_C___LISTAPRACOWNIKOW_H
 #define LAB_C___LISTAPRACOWNIKOW_H
 #include "Pracownik.h"
+#include <fstream>
 using namespace std;
 
 class ListaPracownikow {
@@ -18,6 +19,10 @@ public:
     ~ListaPracownikow();
     void WypiszPracownikow() const;
     const Pracownik * Szukaj(const char * nazwisko, const char* imie);
+
+    void ZapiszDoPliku(const char * nazwaPliku);
+    void WczytajZPliku(const char * nazwaPliku);
+
 };
 
 
